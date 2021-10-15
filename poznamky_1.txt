@@ -1,0 +1,60 @@
+void setup() {
+  // put your setup code here, to run once:
+
+} //prva funkcia = vykonava sa iba raz, ked zapojime napatie
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+} //druha funkcia = vykonava sa opakovanie, kym neodpojime napatie
+		        |
+		        |
+		       \ /
+zakladnu strukturu programu tvoria tieto 2 funkcie 
+
+
+dht 11
+//dht 11 meria tepltou  0-50 °C, s odchylkou 1°C a vlhkosť 20-90% s odchylkou 4%
+ - nema vnutorny odpor, ma mikroprocesor ktory na v momente da tepltu aby sme ju nemuseli ratat
+ - vcc=napajanie, meria teplotu
+ - cas medzi merianiami je kazde 2s
+ - ma 4 piny, (vcc,data, nc, ground - nepouzivame ho)
+
+Existuje knoznica, ktora nam zjednodusuje pracu s teplomerom-
+
+
+Instalacia kniznice
+1) Spustime prostredie-> Menezer Kniznic, klikneme ked sa aktualizuje zoznam, vyhladame si v nom DHT 11
+2)Ked to klikneme objavi sa nam okono, ktore znaci ze nas akniznica pouziva dalsiu kniznicu kotur nam nainstaluje s nou ak to potvrdime
+
+3) Pripojenie kniznice -> Pouzijeme vzorovy priklad -> Súbor, Príklad, DHT sensor LIBRARY, DHT TESTER
+	Maju rozsiahlu dokumentaciu (Nikdy ho neprepisujme!), -> uložiť ako DH11Teplomer 
+
+DHT11Teplomer ---------------------------------------------------------------------------------------------------
+Vychadzame z dokumentacie na GitHube - nechame si ich v kode
+Odkomentujeme si typ sensoru ktory chcem pouzivat (DHT11)
+
+#define DHTPIN 5     // Digital pin connected to the DHT sensor - konstanta pouzivana v kode, vzdy budeme pouzivat vytup GPIO(5)
+
+DHT dht(DHTPIN, DHTTYPE) //deklaracia- tento riadok vytvara objekt(instanciu) na zaklade triedy
+
+
+DHT - datovy typ, objekt DHT
+dht- meno premenej
+(DHTPIN,DHTTYPE) - 2parametricky kontruktor, inicializacia konstruktorov
+
+void setup() { //funkcia setup- vykonava kod, ktory sa vykona len po spusteni, spustenie serioveho rozhrania
+  Serial.begin(9600);  //seriová komunikacia, potrebujeme minimalne 2 zariadeni
+  Serial.println(F("DHTxx test!"));
+
+  dht.begin(); //volanie metody objektu dht
+	      //metoda = begin
+}
+
+
+float h = dht.readHumidity();               //metody, kotre poziadju o hodnotu vlhkosti a teploty, ulozia sa do premenných 'h' a 't'
+  // Read temperature as Celsius (the default)
+  float t = dht.readTemperature();
+  // Read temperature as Fahrenheit (isFahrenheit = true)
+  float f = dht.readTemperature(true);
+

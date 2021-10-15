@@ -1,0 +1,57 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class clovek here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Clovek extends Actor //identifikator | trieda | nazov triedy | rozsiruje triedu Actor
+{
+    /**
+     * Act - do whatever the clovek wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    
+    private int rychlost;   //vlastnosti, inicializovať priamo = int =x;
+    private int body;
+    
+    public Clovek()
+    {
+        this.rychlost=10;
+    }
+    
+    public Clovek(int rychlost)
+    {
+      this.rychlost=rychlost;
+    }
+    
+    
+    
+    
+    
+    //metody - názov, telo, návratovú hodnotu-void, public/private - identifikatory pristupu
+    //vsetky vlastnosti musia byť private,mimo metodyw
+    //inicializaciu atributov vlastnosti realizujeme vždy pomocou konštruktora
+    //konštruktor = metoda ktorá ma určite vlastnosti, vždy je to public(verejne), 
+    //verejna,nema navratovu hodnotu, meno musi byt zhodne s meno triedy
+    //mozu sa lisit poctom, poradim alebo datovym typom
+    //this = atribut, lokalna vlastnost
+    //2. dohoda = ku vysetkym atributom pridavame 'this' 
+    public void act() //metody(opakovacia metoda, loop)
+    {   
+        pohybdole();       
+    }
+    public void pohybdole() //metody
+    {
+         turn (90);
+        move(10);
+        turn (-90);
+    }
+}
+
+
+
+
+
+

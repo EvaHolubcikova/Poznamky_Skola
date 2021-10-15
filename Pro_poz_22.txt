@@ -1,0 +1,52 @@
+move(x) = pohyb v pixeloch
+Chcem urciť smer -> pouzijeme nejaku premenu, smer - vnutorny atribut
+a cez parameter zadam ktora skala sa ma kde pohybovať
+
+smer udávame kladnou alebo zápornou hodnotu
+
+private int smer
+
+vytvorim konstruktor skala - nema navratovu hodnotu 
+
+ public Skala();
+    {
+        this.smer = 1;
+    }
+
+Konstruktory sa musia lisit parametrami
+
+
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+
+public class Skala extends Actor
+{
+    private int smer;
+    
+    public Skala();
+    {
+        movethis.smer = 1;
+    }
+     public Skala(int smer);
+    {
+        this.smer = 5;
+    }
+    /**
+     * Act - do whatever the Skala wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act() //tato metoda sa spsti po kliknuti na act alebo run
+    {
+        //pohyb realizujeme v pixeloch
+        move(1); //pohyb o pixel v smere tváre
+    }
+}
+
+
+
+
+
+
+
+
+
