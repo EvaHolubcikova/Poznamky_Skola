@@ -1,0 +1,46 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class Mucha here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Mucha extends Actor
+{
+   private String smer = "w,s,d,a";   
+   private int rychlost;
+   int pocitadlo=0;
+    public Mucha()
+    {
+        this.rychlost = 1; 
+             
+    }
+    public Mucha(String smer){
+        this.smer = smer;
+        this.rychlost=1;
+        if(this.smer == "w")
+        turn(-90);        
+        else if(this.smer == "s")
+        turn(90);
+        else if(this.smer == "a")
+        turn(180);
+        if(this.smer == "d")
+        turn(0);
+    }
+    
+    public void act() 
+    {        
+        if(pocitadlo <50)
+        {
+         move(this.rychlost);               
+        pocitadlo++;
+    }
+    else
+    {
+        pocitadlo =0;
+        turn(180);
+        
+    }
+}
+}
