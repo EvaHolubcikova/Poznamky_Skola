@@ -1,0 +1,64 @@
+OLED (CT0025OD) 
+- nepotrebuje podsvietenie, šetri spotrebovávanie enrgie		
+- farba - modrá/čierna ( jednofarebný)
+- 128x64 pixel (0,96palcovy)
+- využiijeme knižnicu, ktoráá nahradí naše programovanie
+- nepotrbuje prevodník, všetko to má prisposobené aby fungoval aj na 3V aj na 5V
+- zbernicový model(I2C), možem pripojiť  128 zariadeni
+- je tam osadený SSD1306 radič
+- nema reset tlačitko
+- má adresu 0x3C, vieme si to zistiť pomocou "jednoduchého" programu
+- na našej doske sa nacháádza na pinoch 12 a 14
+- normálne su používane piny 4 a 5
+- mozem zmenit adresu, 8 kombinaciami,
+-------------------------------------------------------------------------------
+KNIŽNICA
+Inštalujeme knižnicu od Adafruit- SSD1306, driver na tento typ softverov, monochroamticky (jednofarebny)
+
+-------------------------------------------------------------------------------
+
+#include <SPI.h>
+#include <Wire.h>
+#include <Adafruit_SSD1306.h>
+
+#define SCREEN_WIDTH 128 // OLED display width, in pixels
+#define SCREEN_HEIGHT 64 // OLED display height, in pixels
+
+// Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
+// The pins for I2C are defined by the Wire-library. 
+// On an arduino UNO:       A4(SDA), A5(SCL)
+// On an arduino MEGA 2560: 20(SDA), 21(SCL)
+// On an arduino LEONARDO:   2(SDA),  3(SCL), ...
+#define OLED_RESET     4 // Reset pin # (or -1 if sharing Arduino reset pin)
+#define SCREEN_ADDRESS 0x3D ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
+Adafruit_SSD1306 obrazovka(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+
+void setup() {
+  Serial.begin(9600);
+
+  // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
+  if(!obrazovka.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) {
+    Serial.println(F("SSD1306 allocation failed"));
+    for(;;); // Don't proceed, loop forever
+  }
+
+  // Show initial display buffer contents on the screen --
+  // the library initializes this with an Adafruit splash screen.
+  obrazovka.display();
+  delay(2000); // Pause for 2 seconds
+
+  // Clear the buffer
+  obrazovka.clearDisplay();
+
+  }
+
+void loop() {
+}
+
+
+je potrebne odkomentovať riadok
+
+
+
+
+	
